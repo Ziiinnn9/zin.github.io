@@ -1,124 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Anime Watchlist with Edit & Images</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Anime & Manga/Manhwa</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header>
-    My Anime Watchlist
+    <h1>Daftar Anime & Manga/Manhwa</h1>
   </header>
 
   <main>
-    <!-- Add Anime Form -->
-    <section aria-labelledby="add-anime-title">
-      <h2 id="add-anime-title">Add Anime</h2>
-      <form id="addForm" novalidate>
-        <div>
-          <label for="add-title">Title <sup>*</sup></label>
-          <input type="text" id="add-title" name="title" placeholder="Anime title" required />
-          <div class="error-message" aria-live="assertive">Please enter a title.</div>
-        </div>
-
-        <div>
-          <label for="add-genre">Genre <sup>*</sup></label>
-          <input type="text" id="add-genre" name="genre" placeholder="e.g. Action, Fantasy" required />
-          <div class="error-message" aria-live="assertive">Please enter at least one genre.</div>
-        </div>
-
-        <div>
-          <label for="add-season">Season <sup>*</sup></label>
-          <input type="number" id="add-season" name="season" min="1" placeholder="Season number" required />
-          <div class="error-message" aria-live="assertive">Please enter a valid season number (1 or more).</div>
-        </div>
-
-        <div>
-          <label for="add-rating">Rating (1-10) <sup>*</sup></label>
-          <input type="number" id="add-rating" name="rating" min="1" max="10" placeholder="How good?" required />
-          <div class="error-message" aria-live="assertive">Please enter a rating between 1 and 10.</div>
-        </div>
-
-        <div>
-          <label for="add-image">Anime Image <sup>*</sup></label>
-          <input type="file" id="add-image" name="image" accept="image/*" required />
-          <div class="error-message" aria-live="assertive">Please select an image file.</div>
-        </div>
-
-        <div>
-          <label class="checkbox-label" for="add-recommended">
-            <input type="checkbox" id="add-recommended" name="recommended" />
-            Add to Recommended List
-          </label>
-        </div>
-
-        <button type="submit" aria-label="Add anime to watchlist">Add Anime</button>
-      </form>
+    <section>
+      <h2>Anime</h2>
+      <ul id="anime-list">
+        <li>Attack on Titan</li>
+        <li>Demon Slayer</li>
+      </ul>
     </section>
 
-    <!-- Watched Anime List -->
-    <section aria-labelledby="watched-title">
-      <h2 id="watched-title">Watched Anime</h2>
-      <ul id="watchedList" aria-live="polite" aria-relevant="additions removals"></ul>
+    <section>
+      <h2>Manga/Manhwa</h2>
+      <ul id="manga-list">
+        <li>Solo Leveling</li>
+        <li>Tower of God</li>
+      </ul>
     </section>
 
-    <!-- Recommended Anime List -->
-    <section aria-labelledby="recommended-title">
-      <h2 id="recommended-title">Recommended Anime</h2>
-      <ul id="recommendedList" aria-live="polite" aria-relevant="additions removals"></ul>
+    <section>
+      <h2>Tambah Judul Baru</h2>
+      <input type="text" id="itemInput" placeholder="Judul baru...">
+      <select id="category">
+        <option value="anime">Anime</option>
+        <option value="manga">Manga/Manhwa</option>
+      </select>
+      <button onclick="addItem()">Tambah</button>
     </section>
   </main>
 
-  <!-- Edit Modal -->
-  <div id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="editModalTitle" tabindex="-1">
-    <div id="editModal">
-      <button id="closeEdit" aria-label="Close edit form">&times;</button>
-      <h2 id="editModalTitle">Edit Anime</h2>
-      <form id="editForm" novalidate>
-        <input type="hidden" id="edit-id" />
-        <div>
-          <label for="edit-title">Title <sup>*</sup></label>
-          <input type="text" id="edit-title" name="title" required />
-          <div class="error-message" aria-live="assertive">Please enter a title.</div>
-        </div>
-
-        <div>
-          <label for="edit-genre">Genre <sup>*</sup></label>
-          <input type="text" id="edit-genre" name="genre" required />
-          <div class="error-message" aria-live="assertive">Please enter at least one genre.</div>
-        </div>
-
-        <div>
-          <label for="edit-season">Season <sup>*</sup></label>
-          <input type="number" id="edit-season" name="season" min="1" required />
-          <div class="error-message" aria-live="assertive">Please enter a valid season number (1 or more).</div>
-        </div>
-
-        <div>
-          <label for="edit-rating">Rating (1-10) <sup>*</sup></label>
-          <input type="number" id="edit-rating" name="rating" min="1" max="10" required />
-          <div class="error-message" aria-live="assertive">Please enter a rating between 1 and 10.</div>
-        </div>
-
-        <div>
-          <label for="edit-image">Anime Image <sup>*</sup> (Leave empty to keep current)</label>
-          <input type="file" id="edit-image" name="image" accept="image/*" />
-          <div class="error-message" aria-live="assertive">Please select a valid image file or leave empty.</div>
-        </div>
-
-        <div>
-          <label class="checkbox-label" for="edit-recommended">
-            <input type="checkbox" id="edit-recommended" name="recommended" />
-            Add to Recommended List
-          </label>
-        </div>
-
-        <button type="submit" aria-label="Save changes">Save Changes</button>
-      </form>
-    </div>
-  </div>
+  <footer>
+    <p>&copy; 2025 Daftar Anime & Manga/Manhwa</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
