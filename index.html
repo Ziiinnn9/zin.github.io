@@ -1,48 +1,111 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daftar Anime & Manga/Manhwa</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Anime Watchlist with Edit Feature</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <header>
-    <h1>Daftar Anime & Manga/Manhwa</h1>
+    My Anime Watchlist
   </header>
 
   <main>
-    <section>
-      <h2>Anime</h2>
-      <ul id="anime-list">
-        <li>Attack on Titan</li>
-        <li>Demon Slayer</li>
-      </ul>
+    <!-- Form Section -->
+    <section aria-labelledby="form-title" id="addAnimeSection">
+      <h2 id="form-title">Add Anime</h2>
+      <form id="animeForm" novalidate>
+        <div>
+          <label for="title">Title <sup>*</sup></label>
+          <input type="text" id="title" name="title" placeholder="Enter anime title" required aria-describedby="titleError" />
+          <div class="error-message" id="titleError" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <label for="genre">Genre <sup>*</sup></label>
+          <input type="text" id="genre" name="genre" placeholder="e.g. Action, Fantasy" required aria-describedby="genreError" />
+          <div class="error-message" id="genreError" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <label for="season">Season <sup>*</sup></label>
+          <input type="number" id="season" name="season" min="1" placeholder="Season number" required aria-describedby="seasonError" />
+          <div class="error-message" id="seasonError" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <label for="rating">Rating (1-10) <sup>*</sup></label>
+          <input type="number" id="rating" name="rating" min="1" max="10" placeholder="How good was it?" required aria-describedby="ratingError" />
+          <div class="error-message" id="ratingError" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <label class="checkbox-label" for="recommended">
+            <input type="checkbox" id="recommended" name="recommended" />
+            Add to Recommended List
+          </label>
+        </div>
+
+        <button type="submit" aria-label="Add anime to the watchlist">Add Anime</button>
+      </form>
     </section>
 
-    <section>
-      <h2>Manga/Manhwa</h2>
-      <ul id="manga-list">
-        <li>Solo Leveling</li>
-        <li>Tower of God</li>
-      </ul>
+    <!-- Watched List -->
+    <section aria-labelledby="watched-title">
+      <h2 id="watched-title">Watched Anime</h2>
+      <ul id="watchedList" class="anime-list" aria-live="polite" aria-relevant="additions removals"></ul>
     </section>
 
-    <section>
-      <h2>Tambah Judul Baru</h2>
-      <input type="text" id="itemInput" placeholder="Judul baru...">
-      <select id="category">
-        <option value="anime">Anime</option>
-        <option value="manga">Manga/Manhwa</option>
-      </select>
-      <button onclick="addItem()">Tambah</button>
+    <!-- Recommended List -->
+    <section aria-labelledby="recommended-title">
+      <h2 id="recommended-title">Recommended Anime</h2>
+      <ul id="recommendedList" class="anime-list" aria-live="polite" aria-relevant="additions removals"></ul>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Daftar Anime & Manga/Manhwa</p>
-  </footer>
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="editModal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle" aria-describedby="editModalDesc" tabindex="-1">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close edit form" id="closeModalBtn">&times;</button>
+      <h3 id="editModalTitle">Edit Anime</h3>
+      <form id="editForm" novalidate>
+        <div>
+          <label for="editTitle">Title <sup>*</sup></label>
+          <input type="text" id="editTitle" name="editTitle" required aria-describedby="editTitleError" />
+          <div class="error-message" id="editTitleError" aria-live="polite"></div>
+        </div>
 
-  <script src="script.js"></script>
+        <div>
+          <label for="editGenre">Genre <sup>*</sup></label>
+          <input type="text" id="editGenre" name="editGenre" required aria-describedby="editGenreError" />
+          <div class="error-message" id="editGenreError" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <label for="editSeason">Season <sup>*</sup></label>
+          <input type="number" id="editSeason" name="editSeason" min="1" required aria-describedby="editSeasonError" />
+          <div class="error-message" id="editSeasonError" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <label for="editRating">Rating (1-10) <sup>*</sup></label>
+          <input type="number" id="editRating" name="editRating" min="1" max="10" required aria-describedby="editRatingError" />
+          <div class="error-message" id="editRatingError" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <label class="checkbox-label" for="editRecommended">
+            <input type="checkbox" id="editRecommended" name="editRecommended" />
+            Add to Recommended List
+          </label>
+        </div>
+
+        <button type="submit" aria-label="Save edited anime">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
 </body>
 </html>
